@@ -1,3 +1,11 @@
+import ImageSlider from "@/components/slider/slider";
+import SubImageSlider from "@/components/subslider/subslider";
+
 export default function Home() {
-  //이거 홈
+  return (
+    <>
+      <ImageSlider />
+      <SubImageSlider />
+    </>
+  );
 }
