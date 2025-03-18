@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "next": "15.2.2",
     "@tailwindcss/vite": "^4.0.14",
     "@types/react-slick": "^0.23.13",
     "motion": "^12.5.0",
