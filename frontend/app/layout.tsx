@@ -1,5 +1,6 @@
 import Footer from "@/components/miso/Footer";
 import Header from "@/components/miso/Header";
+import HeaderFinal from "@/components/miso/HeaderFinal";
 import HeaderMenu from "@/components/miso/HeaderMenu";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -30,8 +31,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header></Header>
-        <HeaderMenu></HeaderMenu>
+        <HeaderFinal></HeaderFinal>
         {children}
         <Footer></Footer>
       </body>

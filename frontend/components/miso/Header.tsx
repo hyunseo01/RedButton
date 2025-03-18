@@ -4,7 +4,7 @@ import Link from "next/link";
 import { IoIosArrowDown } from "react-icons/io";
 import React, { useState } from "react";
 
-const Header = () => {
+const Header = ({ onBrandHover }: { onBrandHover: () => void }) => {
   const [isBrandMenuOpen, setIsBrandMenuOpen] = useState(false);
   const toggleBrandMenu = () => {
     setIsBrandMenuOpen((prev) => !prev);
@@ -33,18 +33,16 @@ const Header = () => {
           />
         </Link>
 
-        <div>
-          <ul
-            style={{
-              listStyle: "none",
-              display: "flex",
-              flexDirection: "row",
-              gap: "30px",
-            }}
-          >
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            padding: "0px 20px 0px 48px",
+          }}
+          onMouseEnter={onBrandHover}
+        >
+          <ul className="flex">
             <Link
-              onMouseEnter={handleMouseEnter}
-              onMouseLeave={handleMouseLeave}
               style={{
                 color: "inherit",
                 textDecoration: "none",
