@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import PickMenu from "../pick/subcomponents/PickMenu";
 
 type MenuCardProps = {
   image: string;
@@ -8,13 +9,7 @@ type MenuCardProps = {
 };
 
 const MenuCard = ({ image, nameKo, nameEN }: MenuCardProps) => {
-  return (
-    <div>
-      <Image src={image} alt="none" width="240" height="270"></Image>
-      <h1>{nameKo}</h1>
-      <span>{nameEN}</span>
-    </div>
-  );
+  return <PickMenu image={image} KoName={nameKo} EnName={nameEN}></PickMenu>;
 };
 
 export default MenuCard;
