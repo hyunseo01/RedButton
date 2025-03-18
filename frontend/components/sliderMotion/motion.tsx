@@ -1,11 +1,11 @@
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import SubsliderText from "../subsliderText/subsliderText";
 
 const Motion = () => {
   return (
     <div
       style={{
-        width: "100px",
+        width: "300px",
         display: "flex",
         justifyContent: "center",
         height: "10vh",
@@ -13,7 +13,7 @@ const Motion = () => {
       }}
     >
       <motion.div
-        initial={{ x: "-500px", opacity: 0 }}
+        initial={{ x: "-300px", opacity: 0 }}
         whileInView={{ x: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 50, duration: 5 }}
       >

@@ -1,7 +1,5 @@
 import Footer from "@/components/miso/Footer";
-import Header from "@/components/miso/Header";
 import HeaderFinal from "@/components/miso/HeaderFinal";
-import HeaderMenu from "@/components/miso/HeaderMenu";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -27,15 +25,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    //헤더 푸터
     <html lang="en">
       <body
         style={{ margin: "0 " }}
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <HeaderFinal></HeaderFinal>
+        <HeaderFinal />
         {children}
-        <Footer></Footer>
+        <Footer />
       </body>
     </html>
   );

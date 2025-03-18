@@ -11,7 +11,9 @@ const MenuAll = () => {
     fetch("http://localhost:8080/menu/findall.do")
       .then((r) => r.json())
       .then((data) => setMenuData(data))
-      .catch((e) => console.error("Error : ", e));
+      .catch((e) => {
+        return alert("서버 켜라"), console.error("Error : ", e);
+      });
   }, []);
 
   console.log(menuData);

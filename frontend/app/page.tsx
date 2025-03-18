@@ -14,6 +14,7 @@ export default function Home() {
       <Pick />
       <SubImageSlider />
       <StoreSearch />
+      <div></div>
     </>
   );
 }
