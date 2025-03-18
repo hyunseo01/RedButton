@@ -15,10 +15,6 @@ const ImageSlider: React.FC = () => {
         delay: 2000,
         disableOnInteraction: false,
       }}
-      navigation={{
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      }}
       modules={[Autoplay, Navigation]}
     >
       <SwiperSlide>
@@ -35,8 +31,6 @@ const ImageSlider: React.FC = () => {
           alt=""
         />
       </SwiperSlide>
-      <div className="swiper-button-prev"></div>
-      <div className="swiper-button-next"></div>
     </Swiper>
   );
 };
