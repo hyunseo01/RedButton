@@ -1,4 +1,5 @@
 import Footer from "@/components/miso/Footer";
+import Game from "@/components/miso/Game";
 import Header from "@/components/miso/Header";
 import HeaderFinal from "@/components/miso/HeaderFinal";
 import HeaderMenu from "@/components/miso/HeaderMenu";
@@ -32,6 +33,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <HeaderFinal></HeaderFinal>
+        <Game></Game>
         {children}
         <Footer></Footer>
       </body>
