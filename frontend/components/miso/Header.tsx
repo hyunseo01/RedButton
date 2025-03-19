@@ -2,14 +2,34 @@
 
 import Link from "next/link";
 import { IoIosArrowDown } from "react-icons/io";
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 
 const Header = ({ onBrandHover }: { onBrandHover: () => void }) => {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
+  const langMenuRef = useRef<HTMLDivElement>(null);
 
   const toggleLangMenu = () => {
     setIsLangMenuOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        langMenuRef.current &&
+        !langMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsLangMenuOpen(false);
+      }
+    };
+
+    if (isLangMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isLangMenuOpen]);
 
   return (
     <header style={{ backgroundColor: "#272422" }}>
@@ -25,7 +45,6 @@ const Header = ({ onBrandHover }: { onBrandHover: () => void }) => {
           justifyContent: "space-between",
         }}
       >
-        {/* 로고 */}
         <Link href={"/"}>
           <img
             style={{ width: "90px" }}
@@ -34,7 +53,6 @@ const Header = ({ onBrandHover }: { onBrandHover: () => void }) => {
           />
         </Link>
 
-        {/* 네비게이션 메뉴 */}
         <div
           style={{
             width: "100%",
@@ -75,16 +93,16 @@ const Header = ({ onBrandHover }: { onBrandHover: () => void }) => {
           </div>
         </div>
 
-        {/* 가맹사업 & 언어 선택 */}
         <div
           style={{
             display: "flex",
             gap: "10px",
             alignItems: "center",
             position: "relative",
+            margin: 0, // KOR/ENG 버튼 외부 여백 없애기
           }}
+          ref={langMenuRef}
         >
-          {/* 가맹사업 안내 버튼 */}
           <div
             style={{
               width: "120px",
@@ -102,70 +120,69 @@ const Header = ({ onBrandHover }: { onBrandHover: () => void }) => {
             가맹사업 안내
           </div>
 
-          {/* 언어 선택 버튼 */}
           <div
             style={{
-              width: "70px",
-              height: "30px",
-              backgroundColor: "#4c4c4c",
-              padding: "7px 10px 9px 10px",
-              borderRadius: "5px",
-              color: "#999999",
               display: "flex",
               alignItems: "center",
-              textAlign: "center",
-              justifyContent: "center",
               cursor: "pointer",
+              position: "relative",
+              margin: 0, // KOR/ENG 버튼 외부 여백 없애기
             }}
             onClick={toggleLangMenu}
           >
-            KOR
-            <IoIosArrowDown
-              style={{
-                fontSize: "20px",
-                transition: "transform 0.3s",
-                transform: isLangMenuOpen ? "rotate(180deg)" : "rotate(0deg)",
-              }}
-            />
-          </div>
-
-          {/* 드롭다운 메뉴 */}
-          {isLangMenuOpen && (
             <div
               style={{
-                position: "absolute",
-                top: "40px",
-                right: "0",
-                width: "100px",
+                width: "70px",
+                height: "30px",
                 backgroundColor: "#4c4c4c",
-                color: "#ffffff",
+                padding: "7px 10px 9px 10px",
                 borderRadius: "5px",
-                boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
-                zIndex: 10,
+                color: "#ffffff",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                // gap: "5px", // ENG와 KOR 버튼 간의 빈틈을 없앴습니다.
+                margin: 0, // 바깥 여백을 제거
               }}
             >
-              <ul style={{ listStyle: "none", padding: "5px 0", margin: 0 }}>
-                <li
-                  style={{
-                    padding: "8px 15px",
-                    cursor: "pointer",
-                    textAlign: "center",
-                  }}
-                >
-                  KOR
-                </li>
-                <li
-                  style={{
-                    padding: "8px 15px",
-                    cursor: "pointer",
-                    textAlign: "center",
-                  }}
-                >
-                  ENG
-                </li>
-              </ul>
+              KOR
+              <IoIosArrowDown
+                style={{
+                  fontSize: "20px",
+                  transition: "transform 0.3s",
+                  transform: isLangMenuOpen ? "rotate(180deg)" : "rotate(0deg)",
+                }}
+              />
             </div>
-          )}
+
+            {isLangMenuOpen && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: "100%",
+                  left: "0",
+                  width: "100%", // 드롭다운 메뉴의 너비를 100%로 설정하여 버튼과 동일하게 맞춤
+                  backgroundColor: "#4c4c4c",
+                  color: "#ffffff",
+                  borderRadius: "5px",
+                  boxShadow: "0px 4px 6px rgba(0,0,0,0.1)",
+                  zIndex: 10,
+                }}
+              >
+                <ul style={{ listStyle: "none", padding: "5px 0", margin: 0 }}>
+                  <li
+                    style={{
+                      padding: "7px 10px 9px",
+                      cursor: "pointer",
+                      textAlign: "center",
+                    }}
+                  >
+                    ENG
+                  </li>
+                </ul>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     </header>
