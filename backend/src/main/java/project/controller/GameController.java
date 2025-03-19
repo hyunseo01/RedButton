@@ -1,13 +1,23 @@
 package project.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import project.model.entity.GameEntity;
+import project.model.entity.MenuEntity;
+import project.service.GameService;
+import project.service.MenuService;
+
+import java.util.List;
 
 @RestController
+@RequestMapping("/game")
 public class GameController {
-//    @GetMapping("/game/findall.do")
-//    public List<GameDto> findAll() {
-//        return gameService.findAll();
-//    }
+    @Autowired
+    private GameService gameService;
+
+    @CrossOrigin(origins = "http://localhost:3000")
+    @GetMapping("/findall.do")
+    public List<GameEntity> findAll() {
+        return gameService.findAll();
+    }
 }

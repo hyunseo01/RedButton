@@ -6,6 +6,7 @@ import MenuGrid from "./MenuGrid";
 
 const MenuAll = () => {
   const [menuData, setMenuData] = useState([]);
+  const [selectedMenu, setSelectedMenu] = useState(null); //클릭했을떄다
 
   useEffect(() => {
     fetch("http://localhost:8080/menu/findall.do")
@@ -15,6 +16,10 @@ const MenuAll = () => {
         return alert("서버 켜라"), console.error("Error : ", e);
       });
   }, []);
+
+  const handleCardClick = (menu: any) => {
+    setSelectedMenu(selectedMenu == menu ? null : menu);
+  };
 
   console.log(menuData);
 
